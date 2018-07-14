@@ -1,0 +1,9 @@
+name: chat_shared
+description: A shared logic for Chat.
+author: Lukasz Huculak <lukasz.huculak@codete.com>
+
+environment:
+  sdk: '>=2.0.0-dev.51.0 <2.0.0'
+
+dev_dependencies:
+  test: ^0.12.30
