@@ -9,6 +9,7 @@ dependencies:
   chat_shared:
     path: ../shared
 
+  react: ^4.4.2
 
 dev_dependencies:
   build_runner: ^0.8.7

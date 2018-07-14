@@ -13,12 +13,19 @@
     <link rel="stylesheet" href="css/materialize.css">
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
-    <script defer src="main.dart.js"></script>
+
 </head>
 
 <body>
 
-  <div id="output"></div>
+<div class="container">
+    <div id="react_mount_point"></div>
+</div>
 
+
+  <script src="packages/react/react.js"></script>
+  <script src="packages/react/react_dom.js"></script>
+  <script src="main.dart.js"></script>
+  <script src="packages/browser/dart.js"></script>
 </body>
 </html>
