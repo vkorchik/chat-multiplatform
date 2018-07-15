@@ -1,8 +1,12 @@
 import 'dart:async';
 
+import 'package:chat_shared/blocs/messages_bloc.dart';
+import 'package:chat_shared/data/message.dart';
 import 'package:flutter/material.dart';
 
 import 'package:chat_shared/blocs/user_bloc.dart';
+import 'package:mobile/dependencies_provider.dart';
+import 'package:mobile/messages_list.dart';
 
 void main() => runApp(new MyApp());
 
@@ -24,6 +28,18 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepOrange,
       ),
       home: UsernamePage(),
+      onGenerateRoute: (rs) {
+        if (rs.name == "/") {
+          return MaterialPageRoute(
+            builder: (context) => UsernamePage(),
+          );
+        }
+        if (rs.name == "/messages") {
+          return MaterialPageRoute(
+            builder: (context) => MessagesPage(),
+          );
+        }
+      },
     );
   }
 }
@@ -40,7 +56,7 @@ class UsernamePageState extends State<UsernamePage> {
 
   UserBloc bloc;
 
-  Future<Null> _usernameSet;
+  StreamSubscription<bool> _usernameSetSubscription;
 
   @override
   Widget build(BuildContext context) {
@@ -86,9 +102,10 @@ class UsernamePageState extends State<UsernamePage> {
   void initState() {
     super.initState();
     bloc = UserBlocImpl();
-    _usernameSet =
-        bloc.usernameSet.skipWhile((event) => !event).first.then((_) {
-      print("Name set. TODO: trigger navigation");
+    _usernameSetSubscription =
+        bloc.usernameSet.skipWhile((event) => !event).listen((_) {
+      print("Name set. Trigger navigation");
+      Navigator.of(context).pushNamed("/messages");
     }, onError: (e) {
       print("$e happened");
     });
@@ -96,7 +113,40 @@ class UsernamePageState extends State<UsernamePage> {
 
   @override
   void dispose() {
+    _usernameSetSubscription.cancel();
     bloc.dispose();
     super.dispose();
+  }
+}
+
+class MessagesPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Messages"),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 2.0),
+        child: Column(
+          children: <Widget>[
+            Expanded(
+                child: MessagesList(
+              bloc: createMessagesBloc(),
+            )),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 6.0),
+              child: Container(
+                height: 2.0,
+                color: Colors.black54,
+              ),
+            ),
+            Container(
+              child: Text("Send data placeholder"),
+            )
+          ],
+        ),
+      ),
+    );
   }
 }
