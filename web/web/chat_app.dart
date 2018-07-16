@@ -6,6 +6,7 @@ import 'package:react/react.dart';
 
 import 'bloc_provider.dart';
 import 'materialized/materialize.dart';
+import 'messages_component.dart';
 
 var chatAppComponent = registerComponent(() => new ChatAppComponent());
 
@@ -39,7 +40,15 @@ class ChatAppComponent extends Component {
     if (state["username"] == null) {
       return usernameComponent(bloc: bloc);
     } else {
-      return div({}, "Username is set to ${state["username"]}");
+      return div({}, [
+        messagesComponent(key: 'messages'),
+        br({
+          'key': 'newline',
+        }),
+        div({
+          'key': 'sendMessage',
+        }, "Send message placeholder"),
+      ]);
     }
   }
 }
