@@ -9,6 +9,7 @@ var materialButton = (Map<String, dynamic> props, dynamic children) => button(
 
 var materialTextarea = (Map<String, dynamic> props) => div(
       {
+        'key': 'input-textarea:${props['key']}',
         'className': 'input-field',
       },
       textarea(props

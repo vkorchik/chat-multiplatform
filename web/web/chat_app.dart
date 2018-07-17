@@ -7,6 +7,7 @@ import 'package:react/react.dart';
 import 'bloc_provider.dart';
 import 'materialized/materialize.dart';
 import 'messages_component.dart';
+import 'send_message_component.dart';
 
 var chatAppComponent = registerComponent(() => new ChatAppComponent());
 
@@ -45,9 +46,7 @@ class ChatAppComponent extends Component {
         br({
           'key': 'newline',
         }),
-        div({
-          'key': 'sendMessage',
-        }, "Send message placeholder"),
+        sendMessage(key: 'sendMessage'),
       ]);
     }
   }
