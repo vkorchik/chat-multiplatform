@@ -31,6 +31,19 @@ void main() {
           verifyNoMoreInteractions(service);
         },
       );
+      test("should send clear input after sending message", () {
+        var service = new _MockMessageService();
+        var bloc = new SendMessageBlocImpl(service);
+        expect(
+          bloc.clearFieldEvents,
+          emitsInOrder([
+            true,
+            true,
+          ]),
+        );
+        bloc.messages.add("not empty");
+        bloc.messages.add("another not empty");
+      });
     },
   );
 }

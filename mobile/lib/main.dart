@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:chat_shared/blocs/user_bloc.dart';
 import 'package:mobile/dependencies_provider.dart';
 import 'package:mobile/messages_list.dart';
+import 'package:mobile/send_message.dart';
 
 void main() => runApp(new MyApp());
 
@@ -141,9 +142,9 @@ class MessagesPage extends StatelessWidget {
                 color: Colors.black54,
               ),
             ),
-            Container(
-              child: Text("Send data placeholder"),
-            )
+            SendMessage(
+              bloc: createSendMessageBloc(),
+            ),
           ],
         ),
       ),
