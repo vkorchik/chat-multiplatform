@@ -1,15 +1,17 @@
 import 'dart:async';
 
-import 'package:chat_shared/blocs/messages_bloc.dart';
-import 'package:chat_shared/data/message.dart';
 import 'package:flutter/material.dart';
 
 import 'package:chat_shared/blocs/user_bloc.dart';
 import 'package:mobile/dependencies_provider.dart';
+import 'package:mobile/firestore_init.dart';
 import 'package:mobile/messages_list.dart';
 import 'package:mobile/send_message.dart';
 
-void main() => runApp(new MyApp());
+void main() async {
+  await firestoreInitialization();
+  runApp(new MyApp());
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
