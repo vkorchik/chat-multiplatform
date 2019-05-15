@@ -16,7 +16,7 @@ class MessagesBlocImpl extends MessagesBloc {
 
   MessagesBlocImpl(this.messageService)
       : assert(messageService != null),
-        _messages = new BehaviorSubject(seedValue: []) {
+        _messages = new BehaviorSubject.seeded([]) {
     messageService.setOnMessagesUpdatedCallback((list) {
       _messages.add(list);
     });

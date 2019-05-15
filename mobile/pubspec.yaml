@@ -4,7 +4,7 @@ description: A mobile chat application
 dependencies:
   flutter:
     sdk: flutter
-
+    
   chat_shared:
     path: ../shared
 
